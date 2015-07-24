@@ -1,0 +1,17 @@
+<tr>
+  <td class="entry">
+    <span class="content"><%= entry.body %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(entry.created_at) %> ago.    
+    </span>
+   </td>
+   <% if entry.comments.any? %>
+      <ol class="entries">
+        <% entry.comments.each do |comment| %>
+          <span> <%= comment.user_id %></span>
+          <span class="content"><%= comment.content %></span>
+        <% end %>
+      </ol>
+    <% end %> 
+   <%= render 'shared/comment_form', entry: entry %>
+</tr>
