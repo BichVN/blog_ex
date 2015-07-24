@@ -13,9 +13,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+     if logged_in?
+      @user = current_user
+    end 
+  end
+
   def show
     @user = User.find(params[:id])
-    @entries = current_user.entries.paginate(page: params[:page])
+    @entries = @user.entries.paginate(page: params[:page])
+    @comment = Comment.new
   end
 
   def destroy
